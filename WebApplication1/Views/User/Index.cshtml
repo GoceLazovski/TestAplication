@@ -1,0 +1,145 @@
+﻿@model IEnumerable<WebApplication1.Models.User>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "User";
+
+}
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#Edit').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/User/Edit',
+                    success: function (result) {
+                        $('#result1').html(result);
+                    }
+                });
+            });
+        });
+    </script>*@
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "SignIn")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRoles)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRoles)
+        </td>
+        <td class="userId">
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            <button id="Edit">Edit</button>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@ |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+    }
+</table>
+
+<div id="dialog-form" title="Edit">
+    <p class="validateTips"></p>
+    <form>
+        <fieldset>
+            <label for="FirstName">First Name</label>
+            <input type="text" name="FirstName" id="FirstName" class="text ui-widget-content ui-corner-all" />
+            <label for="LastName">Last Name</label>
+            <input type="text" name="LastName" id="LastName" class="text ui-widget-content ui-corner-all" />
+            <label for="UserName">User Name</label>
+            <input type="text" name="UserName" id="UserName" class="text ui-widget-content ui-corner-all" />
+            <label for="Password">Password</label>
+            <input type="text" name="Password" id="Password" class="text ui-widget-content ui-corner-all" />
+
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+<script>
+    var dialog = $("#dialog-form").dialog({
+        autoOpen: false,
+        height: 400,
+        width: 300,
+        modal: true,
+        buttons: {
+            "Edit": Edit,
+            Cancel: function () {
+                dialog.dialog("close");
+            }
+        },
+        close: function () {
+        }
+    });
+    
+    $(document).on("click", "#Edit", function () {
+        dialog.dialog("open");
+        
+        console.log($(this).parent().parent());
+        var id = $(this).parent().parent().find(".userId").text();
+
+        $.ajax({
+            type: 'GET',
+            url: '/User/Edit/' + id,
+            success: function (result) {
+                
+                $('#FirstName').val(result.firstName);
+                $('#LastName').val(result.lastName);
+                $('#UserName').val(result.userName);
+                $('#Password').val(result.password);
+            }
+        });
+
+    });
+
+    function Edit() {
+        var objtosend = {
+
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/User/Edit/' + id,
+            data: objtosend,
+            success: function (result) {
+                
+                $('#FirstName').val(result.firstName);
+            }
+        });
+    }
+
+</script>
