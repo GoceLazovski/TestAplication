@@ -12622,11 +12622,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\goce.lazovski\\Desktop\\test\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\goce.lazovski\\Documents\\GitHub\\TestAplication\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\goce.lazovski\\Desktop\\test\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "C:\\Users\\goce.lazovski\\Documents\\GitHub\\TestAplication\\WebApplication1\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\goce.lazovski\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\goce.lazovski\\Desktop\\test\\WebApplication1\\WebApplication1\\obj\\",
+      "outputPath": "C:\\Users\\goce.lazovski\\Documents\\GitHub\\TestAplication\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -16,6 +16,13 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
+        public IActionResult Index()
+        {
+            var addresses = _context.Addresses.ToList();
+
+            return View(addresses);
+        }
+
         public IActionResult Create()
         {
             return View();
